@@ -1,0 +1,44 @@
+<div class="container">
+    <app-top-nav-bar></app-top-nav-bar>
+    <div class="row height-100">
+        <div class="col-md-2 offset-md-1 height-100 margin-top-20 pos-fix margin-top-70">
+            <app-left-nav-bar></app-left-nav-bar>
+        </div>
+        
+        <div class="col-md-6 offset-md-3 following-section margin-top-60" *ngIf="following && following.length > 0; else elseTemplate">
+            <div class="row following-tab margin-top-20" *ngFor="let f of following">
+                <div class="col-md-4 offset-md-2">
+                    <span class="following-font">{{f.username}}</span>
+                </div>
+                <div class="col-md-4 offset-md-1">
+                    <button type="button" (click)="openUnfollowModal(content, f._id)" class="btn btn-full white-font">Following &nbsp;<i class="fa fa-check"></i></button>
+                </div>
+            </div>
+        </div>
+        <ng-template #elseTemplate>
+            <div class="col-md-4 offset-md-5 margin-top-70">
+                <div class="row">
+                    <div class="col-md-7 nofollowersText">You are not following anybody yet!</div>
+                </div>
+                <!-- <div class="row">
+                    <img class="nofollowersImg" src="../../../assets/images/no_followers.jpg">
+                </div> -->
+            </div>
+        </ng-template>
+        <div class="col-md-3 offset-md-9 height-100 pos-fix margin-top-70">
+            <div class="col-md-12 twitter-bg"></div>
+        </div>
+        <ng-template #content let-modal>
+            <!-- <div class="modal-header">
+                Header
+            </div> -->
+            <div class="modal-body">
+                Are you sure you want to unfollow ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" (click)="modal.close('Close click')">Cancel</button>
+                <button type="button" class="btn btn-danger" (click)="unfollow();modal.close('Close click');">Unfollow</button>
+            </div>
+        </ng-template>
+    </div>
+</div>

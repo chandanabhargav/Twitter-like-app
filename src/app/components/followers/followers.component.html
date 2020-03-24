@@ -1,0 +1,39 @@
+<div class="container">
+    <app-top-nav-bar></app-top-nav-bar>
+    <div class="row height-100">
+        <div class="col-md-2 offset-md-1 height-100 margin-top-20 pos-fix margin-top-70">
+            <app-left-nav-bar></app-left-nav-bar>
+        </div>
+        <div class="col-md-6 offset-md-3 following-section margin-top-60" *ngIf="followers && followers.length > 0; else elseTemplate">
+            <div class="row following-tab margin-top-20" *ngFor="let f of followers">
+                <div class="col-md-4 offset-md-2">
+                    <span class="following-font">{{f.username}}</span>
+                </div>
+                <div class="col-md-4 offset-md-1" *ngIf="!following.includes(f._id); else elseTemplate2">
+                    <button type="button" (click)="follow($event.target, f._id);" class="btn btn-full white-font">Follow &nbsp;<i class="fa fa-plus"></i></button>
+                </div>
+                <ng-template #elseTemplate2>
+                    <div class="col-md-4 offset-md-1">
+                        <button type="button" disabled class="btn btn-full white-font">Following &nbsp;<i class="fa fa-check"></i></button>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+        <div class="col-md-6 offset-md-3 following-section margin-top-60">
+            <ng-template #elseTemplate>
+                <div class="col-md-4 offset-md-4 margin-top-70">
+                    <div class="row">
+                        <div class="col-md-7 nofollowersText">You have no followers yet!</div>
+                    </div>
+                    <!-- <div class="row">
+                        <img class="nofollowersImg" src="../../../assets/images/no_followers.jpg">
+                    </div> -->
+                </div>
+            </ng-template>
+        </div>
+        
+        <div class="col-md-3 offset-md-9 height-100 pos-fix margin-top-70">
+            <app-follow-suggestions></app-follow-suggestions>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+    <ul class="nav sidebar-nav"> 
+        <li>
+            <a routerLink="/home"><i class="fa fa-home fa-nav"></i>Home</a>
+        </li>
+        <li>
+            <a routerLink="/tweets"><i class="fa fa-twitter fa-nav"></i>My Tweets</a>
+        </li>
+        <li>
+            <a routerLink="/followers"><i class="fa fa-users fa-nav"></i>Followers</a>
+        </li>
+        <li>
+            <a routerLink="/following"><i class="fa fa-thumbs-up fa-nav"></i>Following</a>
+        </li>
+        <li class="logout">
+            <a (click)="openLogoutModal(contentLogout)" class=""><i class="fa fa-sign-out fa-nav logout-atag"></i><span class="logout-atag">Log Out</span></a>
+        </li>
+    </ul>
+</nav>
+<ng-template #contentLogout let-modallogout>
+    <div class="modal-body">
+        <h5>Are you sure you want to logout ?</h5>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modallogout.close('Close click')">Cancel</button>
+        <button type="button" class="btn btn-danger" (click)="logOut(); modallogout.close('Close click');">Log Out</button>
+    </div>
+</ng-template>

@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white pos-fix width-100">
+    <a class="navbar-brand" href="#"><strong class="logo-font">Twitter</strong></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse margin-left-40" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <!-- <li class="nav-item active">
+          <a class="nav-link" routerLink="/login">Home <span class="sr-only">(current)</span></a>
+        </li> -->
+        <!-- <li class="nav-item float-right">
+          <a class="nav-link" href="#">Log Out</a>
+        </li> -->
+        <!--<li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li> -->
+      </ul>
+      <!-- <span class="navbar-text">
+        Navbar text with an inline element
+      </span> -->
+    </div>
+    <span *ngIf="userName" id="username">
+      Hi, {{userName}}<!-- <a routerLink="/profile" id="profile-atag">{{userName}}</a> -->
+    </span>
+  </nav>

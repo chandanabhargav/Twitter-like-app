@@ -1,0 +1,102 @@
+<div class="container">
+    <app-top-nav-bar></app-top-nav-bar>
+    <div class="row height-100">
+        <div class="col-md-2 offset-md-1 height-100 margin-top-20 pos-fix margin-top-70">
+            <app-left-nav-bar></app-left-nav-bar>
+        </div>
+        <div class="col-md-4 offset-md-4 height-100 margin-top-70">
+            <div class="row margin-top-10">
+                <form [formGroup]="homeForm" (ngSubmit)="onSubmit()" class="homeForm width-100">
+                    <div class="row">
+                        <div class="col-md-12 margin-cstm">
+                            <span class="home-font">Home</span><i class="fa fa-star-o"></i>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <textarea class="form-control tweet-textarea" formControlName="tweet" id="tweet" [(ngModel)]="tweet" placeholder="What's Happening ?" (keypress)="isAtTheRateKey($event)"></textarea>
+                        </div>
+                    </div>
+                    <div class="row tweetImgRow" *ngIf="tweetImgSet">
+                        <div class="col-md-12">
+                            <img src="{{imageSrc}}" id="tweetImg" class="tweetImg">
+                        </div>
+                    </div>
+                    <div class="row margin-top-20">
+                        <div class="col-md-2">
+                            <button type="button" (click)="addImgClick()" name="add-file-btn" class="btn btn-add" ><i class="fa fa-image"></i></button>
+                            <input type="file" id="add-file" accept="image/*" (change)="onFileChange($event)" hidden>
+                        </div>
+                        <div class="col-md-3 offset-md-7 form-group">
+                            <button class="btn btn-full white-font" type="submit">Tweet</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="row margin-top-20 tweets" *ngIf="info && info.length > 0">
+                <div *ngFor="let singleInfo of info" class="width-100">
+                    
+                    <div *ngFor="let tweet of singleInfo.tweets" class="width-100">
+                        <div class="row margin-top-10">
+                            <div class="col-md-6">
+                                <span class="tweetName">{{singleInfo['users'][0]['username']}}</span>
+                            </div>
+                            <div class="col-md-6">
+                                <span class="float-right tweetTime">{{castDate(tweet.creationTime)}}</span>
+                            </div>
+                        </div>
+                        <div class="row margin-top-20">
+                            <div class="col-md-12">
+                                <span class="tweetFont">{{tweet.tweet}}</span>
+                            </div>
+                        </div>
+                        <div class="row margin-top-20" *ngIf="tweet.img">
+                            <div class="col-md-12">
+                                <img src="{{tweet.img}}" class="tweetListImg">
+                            </div>
+                        </div>
+                        <!-- <div class="row likesRow">
+                            <div class="col-md-3">
+                                {{tweet.noOfLikes}} <i class="fa fa-thumbs-up"></i>
+                            </div>
+                        </div> -->
+                        <div class="row likesRow">
+                            <div class="col-md-3" *ngIf="!tweet.likes.includes(userId); else elseTemplate">
+                                <button type="button" class="btn" (click)="likeTweet($event.target, tweet._id)"><i class="fa fa-thumbs-up"></i> &nbsp;&nbsp; {{tweet.noOfLikes}}</button> 
+                            </div>
+                            <ng-template #elseTemplate>
+                                <div class="col-md-3">
+                                    <button type="button" class="btn blue-font" (click)="unLikeTweet($event.target, tweet._id)"><i class="fa fa-thumbs-up"></i> &nbsp;&nbsp; {{tweet.noOfLikes}}</button>
+                                </div>
+                            </ng-template>
+                            
+                            <!-- <div class="col-md-3">
+                                <button type="button" class="btn">Comment</button>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn"><i class="fa fa-share"></i>&nbsp;&nbsp;&nbsp;Share</button>
+                            </div> -->
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <ng-template #content let-modal>
+                <div class="modal-header">
+                    <h4 class="modal-title">{{msgTitle}}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{msgBody}}&hellip;</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Okay</button>
+                </div>
+            </ng-template>
+            <button hidden id="open-modal" class="btn btn-outline-primary mb-2 mr-2" (click)="openLg(content)">Tweet modal</button>
+        </div>
+        <div class="col-md-3 offset-md-9 height-100 pos-fix margin-top-70">
+            <app-follow-suggestions></app-follow-suggestions>
+        </div>
+    </div>
+</div>
