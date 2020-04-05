@@ -39,11 +39,12 @@
     "mongoose": "^5.5.2",
     "mongoose-autopopulate": "^0.10.0",
     "passport": "^0.4.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "@angular/cli": "~8.3.19"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.19",
-    "@angular/cli": "~8.3.19",
+    
     "@angular/compiler-cli": "~8.2.14",
     "@angular/language-service": "~8.2.14",
     "@types/node": "~8.9.4",
