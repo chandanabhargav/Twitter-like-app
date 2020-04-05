@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+//import {$} from 'jquery';
+//import {typeahead, Bloodhound} from 'typeahead';
 
 @Component({
   selector: 'app-top-nav-bar',
