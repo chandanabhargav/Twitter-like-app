@@ -7,7 +7,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 Installation:
 
 1. Start MongoDB server.
-2. Go to root folder and 'npm install'
-3. Run 'ng serve'
-4. Go to server/ and 'npm install'
-5. Run 'node server.js'
+2. Update MongoDB url in db.js
+3. Go to root folder and 'npm install'
+4. Run 'npm start'
