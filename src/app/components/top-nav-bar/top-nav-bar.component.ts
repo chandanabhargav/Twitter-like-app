@@ -13,7 +13,7 @@ export class TopNavBarComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.userName = sessionStorage.getItem('username')
+    this.userName = sessionStorage.getItem('username');
   }
 
 }

@@ -8,7 +8,7 @@ import { UserSignupComponent } from './components/user-signup/user-signup.compon
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule, Router } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LogoutComponent } from './components/logout/logout.component';
 import { FollowingComponent } from './components/following/following.component';
@@ -19,6 +19,7 @@ import { FollowersComponent } from './components/followers/followers.component';
 import { OwnTweetsComponent } from './components/own-tweets/own-tweets.component';
 import { UnfollowComponent } from './components/unfollow/unfollow.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { FilterlistPipe } from './pipes/filterlist.pipe';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     FollowersComponent,
     OwnTweetsComponent,
     UnfollowComponent,
-    ProfileComponent
+    ProfileComponent,
+    FilterlistPipe
   ],
   imports: [
     BrowserModule,
@@ -42,6 +44,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     //for modal 
     NgbModule
   ],

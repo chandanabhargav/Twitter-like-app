@@ -35,13 +35,17 @@ export class UserSignupComponent implements OnInit {
     if(this.signupForm.valid) {
       let user = this.signupForm.value
       this.apiService.signup(user).subscribe((data) => {
-        //debugger
-        console.log('Success: ' + data)
-        this.status = 'Your Account has been created'
+        console.log('Success: ' + data);
+        this.status = 'Your Account has been created';
       },
       (error) => {
-        console.log(error)
-        this.status = 'There was a problem creating your account'
+        console.log(error);
+        if(error.error == "user exists") {
+          this.status = 'Account linked to this email already exists';
+        }
+        else {
+          this.status = 'There was a problem creating your account';
+        }
       })
     }
     else {

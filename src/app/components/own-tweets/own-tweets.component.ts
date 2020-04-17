@@ -29,9 +29,11 @@ export class OwnTweetsComponent implements OnInit {
   getTweets() { 
     this.apiService.getOwnTweets(this.userId).subscribe(data => {
       this.tweets = data
-    }, 
-    error => {
-      console.log('Error getting tweets: ' + error)
+    }, err => {
+      if(err.status == 401) {
+        sessionStorage.clear();
+        this.router.navigateByUrl('login');
+      }
     })
   }
 

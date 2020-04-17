@@ -80,8 +80,13 @@ a {
     color: #3ca2f2;
     font-size: 19px;
 }
+.smooth-edge {
+    border-radius: 20px !important;
+    height: 50px !important;
+    font-size: 17px !important;
+}
 .margin-top-20 {
-    margin-top: 20px;
+    margin-top: 20px !important;
 }
 .margin-top-10 {
     margin-top: 10px;
@@ -90,7 +95,10 @@ a {
     margin-top: 250px;
 }
 .margin-left-40 {
-    margin-left: 40px;
+    margin-left: 40px !important;
+}
+.margin-top-40 {
+    margin-top: 40px !important;
 }
 .white-font {
     color: white !important;
@@ -179,8 +187,13 @@ a {
     font-weight: 600;
     font-size: 17px;
 }
+.fa-times-circle {
+    font-size: 25px !important;
+    margin-top: 10px;
+    color: #9ca1a6;
+}
 .width-100 {
-    width: 100%;
+    width: 100% !important;
 }
 .tweets {
     background: white;

@@ -5,8 +5,17 @@
             <app-left-nav-bar></app-left-nav-bar>
         </div>
         <div class="col-md-4 offset-md-4 height-100 margin-top-70">
-            <div class="row margin-top-10">
-                <form [formGroup]="homeForm" (ngSubmit)="onSubmit()" class="homeForm width-100">
+            <div class="row margin-top-20">
+                <div class="col-md-11">
+                    <input class="form-control smooth-edge" (change)="getSearchResults()" (click)="clearBelow()" placeholder="Looking for someone ? Search here" [(ngModel)]="friendEnter">
+                </div>
+                <div class="col-md-1">
+                    <span class="fa fa-times-circle" (click)="closeFriendsList()"></span>
+                </div>
+            </div>
+            <div class="row margin-top-20" id="results">
+                
+                <form *ngIf="friends.length == 0" [formGroup]="homeForm" (ngSubmit)="onSubmit()" id="homeForm" class="homeForm width-100">
                     <div class="row">
                         <div class="col-md-12 margin-cstm">
                             <span class="home-font">Home</span><i class="fa fa-star-o"></i>
@@ -34,6 +43,25 @@
                         </div>
                     </div>
                 </form>
+                
+                <div *ngIf="friends.length > 0" class="col-md-12 friend-list">
+                    <div class="width-100 user-tab" *ngFor="let f of friends | filterlist:friendEnter">
+                        <div class="row">
+                            <div class="col-md-8">
+                                {{f.username}}
+                            </div>
+                            <div class="col-md-4" *ngIf="f.following == 0; else notFollowing">
+                                <button type="button" (click)="follow($event.target, f._id);" class="btn btn-full white-font">Follow &nbsp;<i class="fa fa-plus"></i></button>
+                            </div>
+                            <ng-template #notFollowing>
+                                <div class="col-md-4">
+                                    <button type="button" class="btn btn-full white-font">Following &nbsp;<i class="fa fa-check"></i></button>
+                                </div>
+                            </ng-template>
+                            
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="row margin-top-20 tweets" *ngIf="info && info.length > 0">
                 <div *ngFor="let singleInfo of info" class="width-100">

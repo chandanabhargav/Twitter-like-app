@@ -32,9 +32,11 @@ export class FollowersComponent implements OnInit {
       console.log('Got the followers')
       this.followers = data
       this.getUsersFollowing()
-    }, 
-    error => {
-      console.log('Error getting followers : ' + error)
+    }, err => {
+      if(err.status == 401) {
+        sessionStorage.clear();
+        this.router.navigateByUrl('login');
+      }
     })
   }
 
@@ -44,9 +46,11 @@ export class FollowersComponent implements OnInit {
       for(let key in data) {
         this.following.push(data[key]['_id'])
       }
-    }, 
-    error => {
-      console.log(error)
+    }, err => {
+      if(err.status == 401) {
+        sessionStorage.clear();
+        this.router.navigateByUrl('login');
+      }
     })
   }
 

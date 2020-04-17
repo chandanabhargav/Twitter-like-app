@@ -42,28 +42,35 @@ router.route('/login').post((req, res) => {
 
 router.route('/createUser').post((req, res, next) => { 
     //res.json(req.body)
-    if(req.body.password) { 
-        var password = req.body.password 
-        req.body.email = req.body.email.toLowerCase()
-        //console.log(password)
-        bcrypt.hash(password, saltRounds, function(error, hash) { 
-            if(error) { 
-                res.send(error)
-            }
-            else { 
-                //console.log(hash)
-                req.body.password = hash
-                User.create(req.body, (err, data) => { 
-                    if(err) {
-                        res.send(err)
+    User.findOne({email: req.body.email}, (err, user) => {
+        if(user) {
+            res.status(500).send("user exists");
+        }
+        else {
+            if(req.body.password) { 
+                var password = req.body.password 
+                req.body.email = req.body.email.toLowerCase()
+                //console.log(password)
+                bcrypt.hash(password, saltRounds, function(error, hash) { 
+                    if(error) { 
+                        res.send(error)
                     }
-                    else {
-                        res.json(data)
+                    else { 
+                        //console.log(hash)
+                        req.body.password = hash
+                        User.create(req.body, (err, data) => { 
+                            if(err) {
+                                res.send(err)
+                            }
+                            else {
+                                res.json(data)
+                            }
+                        })
                     }
                 })
             }
-        })
-    }
+        }
+    });
 })
 
 router.route('/deleteUser').delete((req, res, next) => {
@@ -144,7 +151,7 @@ router.get('/read/:id', verifyToken, (req, res) => {
     })
 }) */
 
-router.get('/users', verifyToken, (req, res, next) => { 
+router.get('/users', (req, res, next) => { 
     User.find((err, users) => { 
         if(err) { 
             res.send(err)
@@ -285,10 +292,10 @@ router.get('/getUsersFollowing/:id', verifyToken, (req, res, next) => {
             return following
         }
     }).then((following) => { 
-        console.log(following)
-        let followingArr = []
+        console.log(following);
+        let followingArr = [];
         following.forEach(element => {
-            followingArr.push(element.userId)
+            followingArr.push(element.userId);
         });
         //console.log(followingArr)
         User.find().where("_id").in(followingArr).exec((err, users) => { 

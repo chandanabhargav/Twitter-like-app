@@ -31,9 +31,11 @@ export class FollowingComponent implements OnInit {
       //debugger
       console.log('Got all following')
       this.following = data
-    }, 
-    error => {
-      console.log('Error getting following list')
+    }, err => {
+      if(err.status == 401) {
+        sessionStorage.clear();
+        this.router.navigateByUrl('login');
+      }
     })
   }
 
@@ -46,9 +48,11 @@ export class FollowingComponent implements OnInit {
       this.unfollowService.unfollow(data).subscribe(data => {
         console.log('Deleted: ' + this.deleteId)
         this.getUsersFollowing()
-      }, 
-      error => {
-        console.log(error)
+      }, err => {
+        if(err.status == 401) {
+          sessionStorage.clear();
+          this.router.navigateByUrl('login');
+        }
       })
     }
   }

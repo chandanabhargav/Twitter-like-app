@@ -28,4 +28,8 @@ export class UserhomeService {
   createTweet(tweetData) {
     return this.http.post(this.baseUri + '/createTweet', tweetData, {headers: this.headers})
   }
+
+  getAllUsers() {
+    return this.http.get(this.baseUri + "/users", {headers: this.headers});
+  }
 }

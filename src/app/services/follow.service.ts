@@ -13,7 +13,6 @@ export class FollowService {
   constructor(private http: HttpClient,) { }
 
   follow(element, id) { 
-    //debugger
       let followId = id //params.id
       let userId = sessionStorage.getItem('userId')
       let followerData = {
