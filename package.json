@@ -30,7 +30,7 @@
     "tslib": "^1.10.0",
     "typeahead": "^0.2.2",
     "zone.js": "~0.9.1",
-    "bcrypt": "^3.0.7",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
